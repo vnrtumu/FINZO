@@ -1,6 +1,6 @@
 /**
  * SmartCredit - Digital Lending Platform
- * Onboarding Flow
+ * Full App with Onboarding + Dashboard
  *
  * @format
  */
@@ -9,7 +9,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
-import {OnboardingNavigator} from './src/navigation';
+import {RootNavigator} from './src/navigation';
 import {Colors} from './src/theme';
 
 const DarkNavTheme = {
@@ -31,10 +31,11 @@ function App() {
     <SafeAreaProvider>
       <StatusBar barStyle="light-content" backgroundColor={Colors.bgDark} />
       <NavigationContainer theme={DarkNavTheme}>
-        <OnboardingNavigator />
+        <RootNavigator />
       </NavigationContainer>
     </SafeAreaProvider>
   );
 }
 
 export default App;
+

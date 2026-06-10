@@ -1,6 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {CommonActions} from '@react-navigation/native';
 import {GradientButton} from '../../components';
 import {Colors, Typography} from '../../theme';
 import {OnboardingStackParamList} from '../../navigation/types';
@@ -118,8 +119,12 @@ const SuccessScreen: React.FC<Props> = ({navigation}) => {
           <GradientButton
             title="Go to Dashboard"
             onPress={() => {
-              // Reset navigation to a home screen
-              navigation.popToTop();
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{name: 'MainApp'}],
+                }),
+              );
             }}
             style={styles.dashboardBtn}
           />
