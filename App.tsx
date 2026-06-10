@@ -1,45 +1,40 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * SmartCredit - Digital Lending Platform
+ * Onboarding Flow
  *
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import React from 'react';
+import {StatusBar} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {OnboardingNavigator} from './src/navigation';
+import {Colors} from './src/theme';
+
+const DarkNavTheme = {
+  ...DefaultTheme,
+  dark: true,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Colors.primaryStart,
+    background: Colors.bgDark,
+    card: Colors.bgCard,
+    text: Colors.textPrimary,
+    border: Colors.border,
+    notification: Colors.accent,
+  },
+};
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <StatusBar barStyle="light-content" backgroundColor={Colors.bgDark} />
+      <NavigationContainer theme={DarkNavTheme}>
+        <OnboardingNavigator />
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
